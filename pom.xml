@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>muzima</groupId>
+    <artifactId>muzima</artifactId>
+    <version>1.1.0</version>
+
+    <developers>
+        <developer>
+            <name>Muzima Team</name>
+            <url>http://muzima.org/</url>
+        </developer>
+    </developers>
+
+    <organization>
+        <name>OpenMRS</name>
+        <url>http://openmrs.org</url>
+    </organization>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180130</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.jna</groupId>
+            <artifactId>jna</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-core</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-gui</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-media</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-media-processing</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-biometrics</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-biometrics-client</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-biometrics-gui</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-devices</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec</groupId>
+            <artifactId>neurotec-licensing</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.neurotec.samples</groupId>
+            <artifactId>samples-utils</artifactId>
+            <version>10.0.0.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <transformers>
+                                <!-- add Main-Class to manifest file -->
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>CallBack</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+
+                    </execution>
+                </executions>
+                <configuration>
+                    <finalName>muzima-scanner</finalName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
